@@ -7,11 +7,21 @@ type Props = {
   secondary?: boolean;
 } & React.ComponentProps<typeof ButtonPaper>;
 
-const Button: React.FC<Props> = ({ children, style, secondary, ...props }) => {
+const Button: React.FC<Props> = ({
+  children,
+  style,
+  secondary,
+  contentStyle,
+  ...props
+}) => {
   const { colors } = useTheme();
 
   const buttonStyle = style
     ? { ...styles.button, ...Object(style) }
+    : styles.button;
+
+  const buttonContentStyle = contentStyle
+    ? { ...styles.button, ...Object(contentStyle) }
     : styles.button;
 
   const color = secondary ? colors.notification : colors.primary;
@@ -19,7 +29,8 @@ const Button: React.FC<Props> = ({ children, style, secondary, ...props }) => {
   return (
     <ButtonPaper
       mode="contained"
-      contentStyle={buttonStyle}
+      style={buttonStyle}
+      contentStyle={buttonContentStyle}
       color={color}
       {...props}>
       <Text style={styles.text}>{children}</Text>

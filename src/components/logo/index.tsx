@@ -15,16 +15,16 @@ const Logo: React.FC<Props> = ({ size = 'large' }) => {
 
 const styles = StyleSheet.create({
   small: {
-    width: 80,
-    height: 80,
+    width: 50,
+    height: 50,
   },
   medium: {
-    width: 160,
-    height: 160,
+    width: 150,
+    height: 150,
   },
   large: {
-    width: 320,
-    height: 320,
+    width: 300,
+    height: 300,
   },
 });
 

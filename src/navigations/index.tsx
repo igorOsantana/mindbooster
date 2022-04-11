@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-// navigations
-import AuthNavigator from './auth';
-// theme
+
+import MainNavigator from './main';
+
 import { theme } from '../theme';
 
 const RootNavigator = () => {
   return (
     <NavigationContainer theme={theme.dark}>
-      <AuthNavigator />
+      <MainNavigator />
     </NavigationContainer>
   );
 };

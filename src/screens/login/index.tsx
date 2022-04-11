@@ -1,21 +1,25 @@
 import React from 'react';
 import {
   View,
+  Text,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  SafeAreaView,
   Animated,
+  Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Logo from '../../components/logo';
 import Link from '../../components/link';
 
+import useAnimatedOnKeyboard from '../../hooks/animatedOnKeyboard';
+
 import { LoginScreenNavigationProp } from './types';
 import { styles } from './styles';
-import useAnimatedOnKeyboard from '../../hooks/animatedOnKeyboard';
+import { useKeyboard } from '@react-native-community/hooks';
 
 const INITIAL_VIEW_SCALE = 1;
 const INITIAL_VIEW_TRANSLATE_Y = 0;
@@ -35,6 +39,10 @@ const LoginScreen: React.FC<LoginScreenNavigationProp> = ({ navigation }) => {
     navigation.navigate('Register');
   };
 
+  const goToCollection = () => {
+    navigation.navigate('Home');
+  };
+
   const animatedViewStyle = {
     ...styles.header,
     transform: [
@@ -43,22 +51,26 @@ const LoginScreen: React.FC<LoginScreenNavigationProp> = ({ navigation }) => {
     ],
   };
 
+  const { keyboardHeight } = useKeyboard();
+  const keyboardOffset = keyboardHeight / 10;
+
   return (
-    <SafeAreaView style={styles.flex1}>
+    <SafeAreaView style={styles.wrapper}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'position' : 'position'}
+          contentContainerStyle={styles.paddingSide}
+          keyboardVerticalOffset={keyboardOffset}>
           <Animated.View style={animatedViewStyle}>
             <Logo size="medium" />
-            <Animated.Text style={styles.brandText}>MindBooster</Animated.Text>
+            <Text style={styles.brandText}>MindBooster</Text>
           </Animated.View>
-          <View style={styles.paddingSide}>
-            <Input label="Email" style={styles.input} />
-            <Input label="Senha" password style={styles.input} />
-            <View style={styles.link}>
-              <Link>Esqueci a senha</Link>
-            </View>
-            <Button>Entrar</Button>
+          <Input label="Email" style={styles.input} />
+          <Input label="Senha" password style={styles.input} />
+          <View style={styles.link}>
+            <Link>Esqueci a senha</Link>
           </View>
+          <Button onPress={goToCollection}>Entrar</Button>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
       <View style={{ ...styles.footer, ...styles.paddingSide }}>

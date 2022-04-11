@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
   flex1: {
     flex: 1,
   },
+  wrapper: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
   paddingSide: {
     paddingHorizontal: 40,
   },
@@ -21,13 +25,11 @@ export const styles = StyleSheet.create({
   },
   link: {
     alignItems: 'flex-end',
-    marginTop: 10,
+    marginTop: 5,
     marginBottom: 50,
   },
   footer: {
     width: '100%',
-    position: 'absolute',
-    bottom: 50,
-    alignSelf: 'center',
+    marginBottom: 50,
   },
 });

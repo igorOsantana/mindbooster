@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     marginRight: 20,
   },
   brand: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
   },

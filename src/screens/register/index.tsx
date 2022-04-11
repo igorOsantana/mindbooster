@@ -4,9 +4,10 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  SafeAreaView,
   Animated,
+  Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Input from '../../components/input';
 import Button from '../../components/button';
@@ -14,31 +15,35 @@ import Button from '../../components/button';
 import { styles } from './styles';
 import useAnimatedOnKeyboard from '../../hooks/animatedOnKeyboard';
 
-const INITIAL_TEXT_TRANSLATE_Y = 0;
+const INITIAL_TEXT_FONT_SIZE = styles.title.fontSize;
 
 const RegisterScreen: React.FC = () => {
-  const { animatedValue: animatedTextTranslateY } = useAnimatedOnKeyboard({
-    initialValue: INITIAL_TEXT_TRANSLATE_Y,
-    toValue: 40,
+  const { animatedValue: animatedTextFontSize } = useAnimatedOnKeyboard({
+    initialValue: INITIAL_TEXT_FONT_SIZE,
+    toValue: INITIAL_TEXT_FONT_SIZE / 1.5,
   });
 
   const animatedTextStyle = {
     ...styles.title,
-    transform: [{ translateY: animatedTextTranslateY }],
+    fontSize: animatedTextFontSize,
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.flex1}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
-          <View style={styles.paddingSide}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={10}>
+          <View style={styles.wrapper}>
             <Animated.Text style={animatedTextStyle}>
               Preencha os dados do seu cadastro
             </Animated.Text>
-            <Input label="Email" style={styles.input} />
-            <Input label="Senha" password style={styles.input} />
-            <Input label="Repetir senha" password style={styles.input} />
-            <Button>Cadastrar</Button>
+            <View>
+              <Input label="Email" style={styles.input} />
+              <Input label="Senha" password style={styles.input} />
+              <Input label="Repetir senha" password style={styles.input} />
+            </View>
+            <Button style={styles.button}>Cadastrar</Button>
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

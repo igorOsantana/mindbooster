@@ -35,16 +35,29 @@ const useAnimatedOnKeyboard = ({
   );
 
   useEffect(() => {
-    const showSubscription = Keyboard.addListener('keyboardWillShow', event => {
-      doAnimation(event);
-    });
-    const hideSubscription = Keyboard.addListener('keyboardWillHide', event => {
-      dismissAnimation(event);
-    });
+    const showSubscriptionAndroid = Keyboard.addListener(
+      'keyboardDidShow',
+      doAnimation,
+    );
+    const hideSubscriptionAndroid = Keyboard.addListener(
+      'keyboardDidHide',
+      dismissAnimation,
+    );
+
+    const showSubscriptionIos = Keyboard.addListener(
+      'keyboardWillShow',
+      doAnimation,
+    );
+    const hideSubscriptionIos = Keyboard.addListener(
+      'keyboardWillHide',
+      dismissAnimation,
+    );
 
     return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
+      showSubscriptionAndroid.remove();
+      hideSubscriptionAndroid.remove();
+      showSubscriptionIos.remove();
+      hideSubscriptionIos.remove();
     };
   }, [doAnimation, dismissAnimation]);
 
