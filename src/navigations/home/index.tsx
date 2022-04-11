@@ -5,6 +5,8 @@ import { IconButton } from 'react-native-paper';
 
 import MyColletionsScreen from '../../screens/collection';
 
+import CustomDrawerContent from '../../components/drawer';
+
 import { RootDrawerParamList } from './types';
 
 const HomeNavigator: React.FC = () => {
@@ -13,15 +15,19 @@ const HomeNavigator: React.FC = () => {
   const { colors } = useTheme();
 
   return (
-    <Navigator>
+    <Navigator
+      drawerContent={CustomDrawerContent}
+      screenOptions={{
+        headerStyle: { backgroundColor: colors.primary },
+        headerTintColor: colors.text,
+        headerTitleAlign: 'left',
+        drawerActiveTintColor: colors.notification,
+      }}>
       <Screen
         name="Collections"
         component={MyColletionsScreen}
         options={{
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.text,
           headerTitle: 'Minhas coleções',
-          headerTitleAlign: 'left',
           drawerLabel: 'Minhas coleções',
           drawerIcon: ({ color }) => (
             <IconButton icon="image-multiple" color={color} />
