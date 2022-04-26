@@ -1,21 +1,21 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 import { Button as ButtonPaper, Text } from 'react-native-paper';
+import { baseColors } from '../../theme/colors';
 
 type Props = {
   secondary?: boolean;
+  success?: boolean;
 } & React.ComponentProps<typeof ButtonPaper>;
 
 const Button: React.FC<Props> = ({
   children,
   style,
   secondary,
+  success,
   contentStyle,
   ...props
 }) => {
-  const { colors } = useTheme();
-
   const buttonStyle = style
     ? { ...styles.button, ...Object(style) }
     : styles.button;
@@ -24,7 +24,11 @@ const Button: React.FC<Props> = ({
     ? { ...styles.button, ...Object(contentStyle) }
     : styles.button;
 
-  const color = secondary ? colors.notification : colors.primary;
+  const color = secondary
+    ? baseColors.secondary
+    : success
+    ? baseColors.success
+    : baseColors.primary;
 
   return (
     <ButtonPaper

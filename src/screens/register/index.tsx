@@ -6,22 +6,26 @@ import {
   Keyboard,
   Animated,
   Platform,
+  StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Input from '../../components/input';
 import Button from '../../components/button';
 
-import { styles } from './styles';
 import useAnimatedOnKeyboard from '../../hooks/animatedOnKeyboard';
-
-const INITIAL_TEXT_FONT_SIZE = styles.title.fontSize;
+import { useTheme } from '@react-navigation/native';
 
 const RegisterScreen: React.FC = () => {
   const { animatedValue: animatedTextFontSize } = useAnimatedOnKeyboard({
     initialValue: INITIAL_TEXT_FONT_SIZE,
     toValue: INITIAL_TEXT_FONT_SIZE / 1.5,
   });
+
+  const {
+    colors: { text },
+  } = useTheme();
+  const styles = makeStyles(text);
 
   const animatedTextStyle = {
     ...styles.title,
@@ -43,7 +47,7 @@ const RegisterScreen: React.FC = () => {
               <Input label="Senha" password style={styles.input} />
               <Input label="Repetir senha" password style={styles.input} />
             </View>
-            <Button style={styles.button}>Cadastrar</Button>
+            <Button>Cadastrar</Button>
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
@@ -52,3 +56,26 @@ const RegisterScreen: React.FC = () => {
 };
 
 export default RegisterScreen;
+
+const makeStyles = (color?: string) =>
+  StyleSheet.create({
+    flex1: {
+      flex: 1,
+    },
+    wrapper: {
+      paddingHorizontal: 40,
+      justifyContent: 'space-evenly',
+      height: '100%',
+    },
+    title: {
+      fontSize: 38,
+      fontWeight: 'bold',
+      color,
+      marginTop: 60,
+    },
+    input: {
+      marginBottom: 20,
+    },
+  });
+
+const INITIAL_TEXT_FONT_SIZE = makeStyles().title.fontSize;

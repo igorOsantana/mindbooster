@@ -19,7 +19,17 @@ const Input: React.FC<Props> = ({
 
   const [hideText, setHideText] = useState(password);
 
-  const toggleHiddenText = () => setHideText(prevState => !prevState);
+  const toggleHiddenText = () => {
+    setHideText(prevState => !prevState);
+  };
+
+  const rightIcon = password ? (
+    <TextInput.Icon
+      forceTextInputFocus={false}
+      name={hideText ? 'eye-off' : 'eye'}
+      onPress={toggleHiddenText}
+    />
+  ) : undefined;
 
   return (
     <TextInput
@@ -27,14 +37,7 @@ const Input: React.FC<Props> = ({
       selectionColor="#fff"
       underlineColor="transparent"
       secureTextEntry={hideText}
-      right={
-        password ? (
-          <TextInput.Icon
-            name={hideText ? 'eye-off' : 'eye'}
-            onPress={toggleHiddenText}
-          />
-        ) : undefined
-      }
+      right={rightIcon}
       {...props}>
       {children}
     </TextInput>

@@ -9,8 +9,8 @@ import {
   ImageSourcePropType,
 } from 'react-native';
 
-import ButtonAsIcon from '../../button/asIcon';
-import Dialog from '../../dialog';
+import ButtonAsIcon from '../button/asIcon';
+import Dialog from '../dialog';
 
 type Props = TouchableOpacityProps & {
   id: string;

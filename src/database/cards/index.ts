@@ -1,0 +1,98 @@
+export const dataCards = [
+  {
+    id: '1',
+    frontText: 'Front text 1',
+    backText: 'Back text 1',
+    collectionId: '1',
+  },
+  {
+    id: '2',
+    frontText: 'Front text 2',
+    backText: 'Back text 2',
+    collectionId: '1',
+  },
+  {
+    id: '3',
+    frontText: 'Front text 3',
+    backText: 'Back text 3',
+    collectionId: '1',
+  },
+  {
+    id: '4',
+    frontText: 'Front text 4',
+    backText: 'Back text 4',
+    collectionId: '1',
+  },
+  {
+    id: '5',
+    frontText: 'Front text 1',
+    backText: 'Back text 1',
+    collectionId: '2',
+  },
+  {
+    id: '6',
+    frontText: 'Front text 2',
+    backText: 'Back text 2',
+    collectionId: '2',
+  },
+  {
+    id: '7',
+    frontText: 'Front text 3',
+    backText: 'Back text 3',
+    collectionId: '2',
+  },
+  {
+    id: '8',
+    frontText: 'Front text 4',
+    backText: 'Back text 4',
+    collectionId: '2',
+  },
+  {
+    id: '9',
+    frontText: 'Front text 1',
+    backText: 'Back text 1',
+    collectionId: '3',
+  },
+  {
+    id: '10',
+    frontText: 'Front text 2',
+    backText: 'Back text 2',
+    collectionId: '3',
+  },
+  {
+    id: '11',
+    frontText: 'Front text 3',
+    backText: 'Back text 3',
+    collectionId: '3',
+  },
+  {
+    id: '12',
+    frontText: 'Front text 4',
+    backText: 'Back text 4',
+    collectionId: '3',
+  },
+  {
+    id: '13',
+    frontText: 'Front text 1',
+    backText: 'Back text 1',
+    collectionId: '4',
+  },
+  {
+    id: '14',
+    frontText: 'Front text 2',
+    backText: 'Back text 2',
+    collectionId: '4',
+  },
+  {
+    id: '15',
+    frontText: 'Front text 3',
+    backText: 'Back text 3',
+    collectionId: '4',
+  },
+  {
+    id: '16',
+    frontText: 'Front text 4',
+    backText: 'Back text 4',
+    collectionId: '4',
+  },
+];
